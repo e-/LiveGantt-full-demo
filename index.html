@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gantt Chart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/index.css" rel="stylesheet" media="screen">
+    
+    <script data-main="js/index.js" src="js/require.js"></script>
+  </head>
+  <body>
+    <div id="history-views">
+    </div>
+    <div id="history-popover" class="popover right">
+      <div class="arrow"></div>
+      <h3 class="popover-title">Popover left</h3>
+      <div class="popover-content">
+      qwerojqwoierjqwoirejqwoierjqow
+      qwer
+      qwr
+      qw
+      req
+      </div>
+    </div>
+    <div id="main">
+      <div class="window" id="main-window">
+        <div class="panel">
+          <div class="view-change">
+            <table cellspacing="0" border="0">
+              <tr>
+                <td><button class="btn btn-default show-task-overview">Schedule</button></td>
+                <td><button class="btn btn-default show-utilization-overview">
+                  <span style="font-size:0.9em">Performance</span></button></td>
+              </tr>
+              <tr>
+                <td><button class="btn btn-default show-tasktype-overview">Package</button></td>
+                <td><button class="btn btn-default show-resource-overview">Resource</button></td>
+              </tr>
+            </table>
+            <div class="handle">
+              <i class="glyphicon glyphicon-move"></i>
+            </div>
+          </div>
+          <div class="split">
+            <table cellspacing="0" border="0">
+              <tr>
+                <td><button class="btn btn-default split-v"><i class="glyphicon glyphicon-pause"></i></button></td>
+                <td><button class="btn btn-default split-h"><i class="glyphicon glyphicon-pause"></i></button></td>
+              </tr>
+            </table>
+          </div>
+          <button class="split-remove btn btn-default">Remove</button>
+          <div class="view-option-wrapper">
+            <div class="utilization-overview-options view-options">
+              <div class="checkbox">
+                <label class="hide-reference-line">
+                  <input type="checkbox">
+                  Hide Reference Line
+                </label>
+              </div>
+              <div class="checkbox">
+                <label class="hide-current-time">
+                  <input type="checkbox">
+                  Hide Current Time
+                </label>
+              </div>
+            </div>
+            <div class="tasktype-overview-options view-options">
+              <div class="checkbox">
+                <label class="hide-reference-line">
+                  <input type="checkbox">
+                  Hide Reference Line
+                </label>
+              </div>
+              <div class="checkbox">
+                <label class="hide-current-time">
+                  <input type="checkbox">
+                  Hide Current Time
+                </label>
+              </div>
+              <ul class="packages">
+              </ul>
+            </div>
+            <div class="task-overview-options view-options">
+              <div class="checkbox">
+                <label class="hide-current-time">
+                  <input type="checkbox">
+                  Hide Current Time
+                </label>
+              </div>
+              <div class="checkbox">
+                <label class="highlight-focused">
+                  <input type="checkbox">
+                  Highlight Focused
+                </label>
+              </div>
+
+              <div class="radio">
+                <label class="aggr3 aggr">
+                  <input type="radio" name="aggregation1" data-level="3">Apply Aggregation
+                </label>
+              </div>
+              <div class="radio">
+                <label class="aggr2 aggr">
+                  <input type="radio" name="aggregation1" data-level="2">Reordering Only
+                </label>
+              </div>
+              <div class="radio have-sub">
+                <label class="aggr1 aggr">
+                  <input type="radio" name="aggregation1" data-level="1">Gantt
+                </label>
+              </div>
+              <div class="sub">
+                <h3>Sort by</h3>
+                <div class="radio"><label class="tos1 tos"><input type="radio" name="task-overview-sort1" data-type="1">ID</label></div>
+                <div class="radio"><label class="tos2 tos"><input type="radio" name="task-overview-sort1" data-type="2">Start Time</label></div>
+                <div class="radio"><label class="tos3 tos"><input type="radio" name="task-overview-sort1" data-type="3">Finish Time</label></div>
+              </div>
+            </div>
+            <div class="resource-overview-options view-options">
+              <h3>Sort by</h3>
+              <div class="radio"><label class="ros1 ros"><input type="radio" name="resource-overview-sort1" data-type="1">ID</label></div>
+              <div class="radio"><label class="ros2 ros"><input type="radio" name="resource-overview-sort1" data-type="2">Start Time</label></div>
+              <div class="radio"><label class="ros3 ros"><input type="radio" name="resource-overview-sort1" data-type="3">Finish Time</label></div>
+            </div>
+          </div>
+          <button class="btn btn-default toggle-options">Options</button>
+        </div>
+        <div class="view">
+          <svg class="main-view"></svg>
+          <div class="summary-popover popover top">
+            <div class="arrow"></div>
+            <h3 class="popover-title">Popover left</h3>
+            <div class="popover-content"></div>
+          </div>
+          <div class="reschedule-popover popover top">
+            <div class="arrow"></div>
+            <h3 class="popover-title"></h3>
+            <div class="popover-content"></div>
+          </div>
+        </div>
+      </div>
+      <div class="window" id="aux-window">
+        <div class="panel">
+          <div class="view-change">
+            <table cellspacing="0" border="0">
+              <tr>
+                <td><button class="btn btn-default show-task-overview">Schedule</button></td>
+                <td><button class="btn btn-default show-utilization-overview">
+                  <span style="font-size:0.9em">Performance</span></button></td>
+                </button></td>
+              </tr>
+              <tr>
+                <td><button class="btn btn-default show-tasktype-overview">Package</button></td>
+                <td><button class="btn btn-default show-resource-overview">Resource</button></td>
+              </tr>
+ 
+            </table>
+            <div class="handle">
+              <i class="glyphicon glyphicon-move"></i>
+            </div>
+          </div>
+          <div class="split">
+            <table cellspacing="0" border="0">
+              <tr>
+                <td><button class="btn btn-default split-v"><i class="glyphicon glyphicon-pause"></i></button></td>
+                <td><button class="btn btn-default split-h"><i class="glyphicon glyphicon-pause"></i></button></td>
+              </tr>
+            </table>
+          </div>
+          <button class="split-remove btn btn-default">Remove</button>
+          <div class="view-option-wrapper">
+            <div class="utilization-overview-options view-options">
+              <div class="checkbox">
+                <label class="hide-reference-line">
+                  <input type="checkbox">
+                  Hide Reference Line
+                </label>
+              </div>
+              <div class="checkbox">
+                <label class="hide-current-time">
+                  <input type="checkbox">
+                  Hide Current Time
+                </label>
+              </div>
+            </div>
+            <div class="tasktype-overview-options view-options">
+              <div class="checkbox">
+                <label class="hide-reference-line">
+                  <input type="checkbox">
+                  Hide Reference Line
+                </label>
+              </div>
+              <div class="checkbox">
+                <label class="hide-current-time">
+                  <input type="checkbox">
+                  Hide Current Time
+                </label>
+              </div>
+              <ul class="packages">
+              </ul>
+            </div>
+            <div class="task-overview-options view-options">
+              <div class="checkbox">
+                <label class="hide-current-time">
+                  <input type="checkbox">
+                  Hide Current Time
+                </label>
+              </div>
+              <div class="checkbox">
+                <label class="highlight-focused">
+                  <input type="checkbox">
+                  Highlight Focused
+                </label>
+              </div>
+
+              <div class="radio">
+                <label class="aggr3 aggr">
+                  <input type="radio" name="aggregation2" data-level="3">Apply Aggregation
+                </label>
+              </div>
+              <div class="radio">
+                <label class="aggr2 aggr">
+                  <input type="radio" name="aggregation2" data-level="2">Reordering Only
+                </label>
+              </div>
+              <div class="radio have-sub">
+                <label class="aggr1 aggr">
+                  <input type="radio" name="aggregation2" data-level="1">Gantt
+                </label>
+              </div>
+              <div class="sub">
+                <h3>Sort by</h3>
+                <div class="radio"><label class="tos1 tos"><input type="radio" name="task-overview-sort2" data-type="1">ID</label></div>
+                <div class="radio"><label class="tos2 tos"><input type="radio" name="task-overview-sort2" data-type="2">Start Time</label></div>
+                <div class="radio"><label class="tos3 tos"><input type="radio" name="task-overview-sort2" data-type="3">Finish Time</label></div>
+              </div>
+            </div>
+            <div class="resource-overview-options view-options">
+              <h3>Sort by</h3>
+              <div class="radio"><label class="ros1 ros"><input type="radio" name="resource-overview-sort2" data-type="1">ID</label></div>
+              <div class="radio"><label class="ros2 ros"><input type="radio" name="resource-overview-sort2" data-type="2">Start Time</label></div>
+              <div class="radio"><label class="ros3 ros"><input type="radio" name="resource-overview-sort2" data-type="3">Finish Time</label></div>
+            </div>
+          </div>
+          <button class="btn btn-default toggle-options">Options</button>
+        </div>
+        <div class="view">
+          <svg class="main-view"></svg>
+          <div class="summary-popover popover top">
+            <div class="arrow"></div>
+            <h3 class="popover-title">Popover left</h3>
+            <div class="popover-content"></div>
+          </div>
+          <div class="reschedule-popover popover top">
+            <div class="arrow"></div>
+            <h3 class="popover-title"></h3>
+            <div class="popover-content"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

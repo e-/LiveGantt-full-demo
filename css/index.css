@@ -1,0 +1,580 @@
+html, body{
+  height:100%;
+  overflow:hidden;
+}
+
+body{
+  background:#ccc;
+}
+
+svg {
+  background:#fff;
+  user-select:none;
+  -webkit-user-select:none;
+}
+
+.window {
+  position:relative;
+}
+
+#main-window{
+  float:left;
+}
+
+#aux-window{
+  float:right;
+}
+
+.time-axis path, .time-axis line{
+  fill: none;
+  stroke: #ddd;
+  shape-rendering: crispEdges;
+}
+
+.time-axis text{
+}
+
+
+.top-axis{
+  background-color: #eee;
+}
+
+.top-axis path, .bottom-axis path{
+  display:none;
+}
+
+.top-axis-container{
+  fill: #eee;
+}
+
+.bottom-axis-container{
+  fill: #eee;
+}
+
+.axis{
+/*  font-size:0.8em;*/
+}
+
+#history-views{
+  width: 260px;
+  height:100%;
+  position:absolute;
+  left:0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#main{
+  margin-left:260px;
+  height:100%;
+  position:relative;
+}
+
+
+
+.setup-axis > text{
+  text-anchor: end;
+}
+
+.utilization-axis > text{
+  text-anchor:end;
+}
+
+.utilization path {
+  fill: none;
+  stroke: #ff7f0e;
+  stroke-width:1.5px;
+
+}
+
+.setup rect{
+  fill: #3276b1; 
+}
+
+.setup-axis .tick line, .utilization-axis .tick line{
+  stroke:black;
+  shape-rendering: crispEdges;
+}
+
+.setup-axis path, .utilization-axis path{
+  shape-rendering: crispEdges;
+}
+
+.brush{
+  opacity: 0.15;
+}
+
+
+.time-marker-date{
+  fill:#fff;
+  font-size:0.7em;
+  text-anchor:middle;
+}
+.time-marker-time{
+  fill:#fff;
+  font-size:0.8em;
+  text-anchor:middle;
+}
+.time-marker{
+  fill:#d9534f;
+  fill:black;
+  opacity:0.8;
+}
+
+.time-marker-2{
+  fill:#f0ad4e;
+}
+
+.time-marker-3{
+  fill:black;
+  opacity:0.8;
+}
+
+
+
+.marker rect{
+  fill: black;
+}
+
+.marker path{
+  fill: black;
+}
+
+.marker text{
+  text-anchor:middle;
+  alignment-baseline: central;
+}
+
+.utilization-marker rect{
+  opacity:.8;
+}
+
+.utilization-marker path{
+  opacity:.8;
+}
+
+.utilization-marker text{
+  font-size:0.8em;
+  fill:#fff;
+}
+
+.setup-marker rect{
+  opacity:.8;
+}
+
+.setup-marker path{
+  opacity:.8;
+}
+
+.setup-marker text{
+  font-size:0.8em;
+  fill: #fff;
+}
+.reference-line line{
+  stroke:#222;
+  shape-rendering: crispEdges;
+  stroke-width:1px;
+  pointer-events:none;
+}
+
+.guide-line line{
+  stroke:#222;
+  shape-rendering: crispEdges;
+  stroke-width:1px;
+  pointer-events:none;
+}
+
+
+.line{
+  stroke: #222;
+  shape-rendering: crispEdges;
+  stroke-width:1px;
+}
+
+.package-name{
+  text-anchor: middle;
+  alignment-baseline: central;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.task-definition-name{
+  text-anchor: end;
+  alignment-baseline: central;
+  pointer-events:none;
+}
+
+.progress-path{
+  stroke: #aaa; /*#1f77b4;*/
+  stroke-width: 1px;
+  opacity:0.8;
+}
+
+.stock-path{
+  stroke: #aaa; /*#31a354;*/
+  stroke-width: 1px;
+  opacity: 0.8;
+}
+
+.frequency {
+  pointer-events:none;
+}
+
+.resource-name{
+  alignment-baseline: central;
+}
+
+.cp {
+  cursor:pointer;
+}
+
+.resource-type-name{
+  text-anchor: end;
+  font-weight:bold;
+  pointer-events:none;
+  font-size:1.5em;
+}
+
+/*******************************************************
+
+  Window Panel Styles
+
+*******************************************************/
+
+.panel {
+  position:absolute;
+  overflow:hidden;
+  background:#eee;
+  border-radius:30px;
+  font-size:0.9em;
+  z-index:100;
+  box-shadow:0px 2px 6px rgba(0,0,0,.3);
+}
+
+.view-change {
+  position:relative;
+  margin:5px;
+  width:130px;
+  height:130px;
+  margin-bottom:0px;
+}
+
+.view-change table{
+  width:130px;
+  height:130px;
+  border-collapse: collapse;
+  border-spacing:0;
+}
+
+.view-change td{
+  width:65px;
+  height:65px;
+  padding:0;
+}
+
+.view-change .btn{
+  display:inline-block;
+  width:65px;
+  height:65px;
+  margin:0;
+  padding:0;
+  border-radius:0;
+  outline:none;
+  font-size:0.9em;
+}
+
+.view-change .show-utilization-overview{
+  border-top-right-radius: 30px;
+  border-bottom:none;
+}
+.view-change .show-tasktype-overview{
+  border-right:none;
+}
+.view-change .show-task-overview{
+  /*border-bottom-left-radius: 30px;*/
+  border-top-left-radius: 30px;
+  border-right:none;
+  border-bottom:none;
+}
+.view-change .show-resource-overview{
+  /*border-bottom-right-radius: 30px;*/
+}
+
+.view-option-wrapper{
+  display:none;
+  background:#fff;
+  margin:0 5px;
+  margin-top:2px;
+  border:1px solid #ccc;
+  padding:2px 5px;
+  width:130px;
+}
+
+.handle{
+  position:absolute;
+  left:45px;
+  top:45px;
+  border-radius:20px;
+  background:white;
+  border:1px solid #ccc;
+  width:40px;
+  height:40px;
+  line-height:40px;
+  font-size:1em;
+  text-align:center;
+  cursor: move;
+}
+
+
+.split{
+  margin:0 5px;
+  margin-top:2px;
+}
+.split table{width:130px;}
+.split td{width:50%;padding:0;}
+.split .btn{width:100%; border-radius:0; margin:0;padding:0;outline:none; font-size:0.9em;height:25px;}
+.split-v{
+  border-right:none;
+}
+.split-remove{
+  font-size:0.9em;
+  border-radius:0;
+  width:130px;
+  outline:none;
+  margin:0px 5px;
+  margin-top:2px;
+  display:block;
+}
+
+.split-h i{
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+  position:relative;
+  top:2px;
+}
+
+.panel .toggle-options{
+  font-size:.9em;
+  border-bottom-left-radius:30px;
+  border-bottom-right-radius:30px;
+  margin:5px 5px;
+  margin-top:2px;
+  width:130px;
+  outline:none;
+}
+
+.packages{
+  padding-left:20px;
+}
+
+.packages li{
+}
+
+.have-sub{
+  margin-bottom:5px;
+}
+
+h3{
+  font-size:1.0em;
+  margin-top:0px;
+  margin-bottom:5px;
+}
+
+.sub{
+  margin-left:20px;
+}
+
+.sub h3{
+  font-size:1em;
+  margin-top:0;
+  margin-bottom:5px;
+}
+
+.sub .radio{
+  margin-top:0px;
+  margin-bottom:0px;
+}
+
+.checkbox, .radio {
+  margin: 3px 0;
+}
+
+.radio+.radio, .checkbox+.checkbox{
+  margin-top:3px;
+}
+
+/***************************************
+
+UI
+
+***************************************/
+
+.popover{
+  width:190px;
+  pointer-events:none;
+}
+
+.popover-title {
+  padding:3px 8px;
+  font-weight:bold;
+}
+
+.popover-title small {
+  font-size:0.8em;
+  color:#222;
+}
+
+.popover-content{
+  padding:3px 8px;
+  font-size:0.9em;
+}
+ 
+.popover-content ul{
+  padding:0;
+  margin:0;
+  padding-left:0px;
+}
+
+.popover-content li{
+  list-style:none;
+  list-style-position:inside;
+}
+
+.bullet{
+  display:inline-block;
+  width:6px;
+  height:6px;
+  border-radius:3px;
+  position:relative;
+  top:-2px;
+  left:-1px;
+  margin-right:1px;
+}
+
+.bullet2{
+  display:inline-block;
+  width:6px;
+  height:6px;
+  border-radius:3px;
+  position:relative;
+  top:-1px;
+  left:0px;
+  margin-right:1px;
+}
+
+.interval {
+  font-weight:bold;
+}
+
+
+
+#task-view{
+  position:absolute;
+}
+
+#task-view svg{
+  background:none;
+  display:inline-block;
+}
+
+
+#task-view .flow{
+  position:absolute;
+  left:0;
+  top:0;
+}
+
+#task-view .view{
+  background:white;
+  position:absolute;
+  top:0;
+  right:0;
+/*  border:1px solid rgba(0,0,0, 0.2);*/
+  border-bottom-right-radius: 6px;
+  border-top-right-radius:6px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+}
+
+
+
+
+
+
+
+/*********************************************
+
+history 
+
+*********************************************/
+
+.view-thumbnail{
+  width:200px;
+  height:180px;
+  margin: 0px 25px 0px 25px;
+  background:#fff;
+  /*border-radius:5px;
+  border:1px solid #ccc;
+  box-shadow:0 2px 10px rgba(0,0,0, .3);*/
+  cursor:pointer;
+  position:relative;
+}
+
+.view-thumbnail:first-child{
+  height:150px;
+  margin-top:15px;
+}
+
+.flow{
+  display:block;
+}
+
+.view-thumbnail rect{
+/* shape-rendering: crispEdges;*/
+}
+
+
+.view-thumbnail .remove{
+  display:none;
+  right:0;
+  top:30px;
+  position:absolute;
+  font-size:1.2em;
+  margin:2px;
+  color:#333;
+}
+
+.view-thumbnail:last-child:hover .remove{
+  display:block;
+}
+
+.view-thumbnail .remove:hover{
+  color:#333;
+  text-decoration:none;
+}
+
+.view-thumbnail .eye{
+  display:none;
+  left:6px;
+  top:32px;
+  position:absolute;
+  color:#333;
+}
+
+.view-thumbnail.focused .eye{
+  display:block;
+}
+
+.view-thumbnail:first-child .eye{
+  top:1px;
+}
+
+
+/******************************
+
+  Util
+
+*******************************/
+
+.srce{
+  shape-rendering: crispEdges;
+}
