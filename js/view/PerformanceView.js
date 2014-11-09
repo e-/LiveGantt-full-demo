@@ -201,7 +201,7 @@ define(['model', 'simplify', 'System',
           .attr('class', 'brush')
           .call(brush)
           .selectAll('rect')
-            .attr('y', availableRange[1] - 1)
+            .attr('y', availableRange[1] - 3)
             .attr('height', availableRange[0] - availableRange[1] + 1)
             .on('contextmenu', function(){
               d3.event.preventDefault();
@@ -225,7 +225,7 @@ define(['model', 'simplify', 'System',
         .append('g')
         .attr('class', 'brush')
         .append('rect')
-          .attr('y', availableRange[1] - 1)
+          .attr('y', availableRange[1] - 3)
           .attr('height', availableRange[0] - availableRange[1] + 1)
           .attr('x', x(brushedDomain[0]))
           .attr('width', x(brushedDomain[1]) - x(brushedDomain[0]))
