@@ -29,6 +29,7 @@ require(['jquery', 'model', 'view', 'Filter', 'Window', 'backend',
       ;
 
   function initialize(project){
+    $('#loading').hide();
     var mainWindow = new Window(project, $('#main-window'), function(){
       manager.renderAll();
     }, true);

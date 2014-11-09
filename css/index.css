@@ -578,3 +578,22 @@ history
 .srce{
   shape-rendering: crispEdges;
 }
+
+#loading{
+  width:300px;
+  height:120px;
+  text-align:center;
+  border-radius:10px;
+  position:absolute;
+  left:50%;
+  top:50%;
+  margin-left:-150px;
+  margin-top:-100px;
+  background:#fff;
+  border:1px solid #aaa;
+  padding:30px;
+
+  font-size:1.3em;
+  box-shadow:0px 20px 30px 10px rgba(0,0,0, 0.12), 0px 10px 30px 5px rgba(0,0,0, 0.3);
+  border-top:1px solid #ddd;
+}
